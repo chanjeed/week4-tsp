@@ -159,30 +159,39 @@ def mutate(individual, mutationRate):
     return individual
 
 
-def mutatePopulation(population, mutationRate):
+def mutatePopulation(population, mutationRateMin, mutationRateMax):
     mutatedPop = []
-
+    popRanked = rankRoutes(population)
+    F_avg = sum(x[1] for x in popRanked)/len(popRanked)
+    F_max = popRanked[0][1]
     for ind in range(0, len(population)):
+        F = Fitness(population[ind]).routeFitness()
+        if F < F_avg:
+            mutationRate = mutationRateMax
+        else:
+            mutationRate = mutationRateMax * \
+                (mutationRateMax-mutationRateMin)*(F-F_avg)/(F_max-F_avg)
         mutatedInd = mutate(population[ind], mutationRate)
         mutatedPop.append(mutatedInd)
     return mutatedPop
 
 
-def nextGeneration(currentGen, eliteSize, mutationRate):
+def nextGeneration(currentGen, eliteSize, mutationRateMin, mutationRateMax):
     popRanked = rankRoutes(currentGen)
     selectionResults = selection(popRanked, eliteSize)
     matingpool = matingPool(currentGen, selectionResults)
     children = breedPopulation(matingpool, eliteSize)
-    nextGeneration = mutatePopulation(children, mutationRate)
+    nextGeneration = mutatePopulation(
+        children, mutationRateMin, mutationRateMax)
     return nextGeneration
 
 
-def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations):
+def geneticAlgorithm(population, popSize, eliteSize, mutationRateMin, mutationRateMax, generations):
     pop = initialPopulation(popSize, population)
     print("Initial distance: " + str(1 / rankRoutes(pop)[0][1]))
 
     for i in range(0, generations):
-        pop = nextGeneration(pop, eliteSize, mutationRate)
+        pop = nextGeneration(pop, eliteSize, mutationRateMin, mutationRateMax)
 
     print("Final distance: " + str(1 / rankRoutes(pop)[0][1]))
     bestRouteIndex = rankRoutes(pop)[0][0]
@@ -202,5 +211,5 @@ if __name__ == '__main__':
             cityList.append(City(index, float(xy[0]), float(xy[1])))
             index += 1
     solution = geneticAlgorithm(
-        population=cityList, popSize=100, eliteSize=20, mutationRate=0.01, generations=1000)
+        population=cityList, popSize=100, eliteSize=20, mutationRateMin=0.01, mutationRateMax=0.05, generations=1000)
     print_solution(solution)
