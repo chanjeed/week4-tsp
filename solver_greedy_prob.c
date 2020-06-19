@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <float.h>
+#include <math.h>
 int n;
 
 struct City
@@ -29,7 +30,7 @@ int read_input(char filename[], struct City cities[])
     fscanf(f, "%c,%c", &bf1, &bf2);
     while ((ret = fscanf(f, "%f,%f", &cities[idx].x, &cities[idx].y)) != EOF)
     {
-        printf("%f %f\n", cities[idx].x, cities[idx].y);
+        //printf("%f %f\n", cities[idx].x, cities[idx].y);
         idx++;
     }
     fclose(f);
@@ -38,7 +39,7 @@ int read_input(char filename[], struct City cities[])
 
 float distance(struct City city1, struct City city2)
 {
-    return math.sqrt((city1.x - city2.x) * *2 + (city1.y - city2.y) * *2)
+    return sqrt(pow(city1.x - city2.x, 2) + pow(city1.y - city2.y, 2));
 }
 
 int print_cities(struct City cities[])
@@ -50,11 +51,10 @@ int print_cities(struct City cities[])
     }
 }
 
-char *greedy(struct City cities[])
+void greedy(struct City cities[], int solution[])
 {
-
+    float dist[n][n];
     int i, j;
-    float dist = [n][n];
 
     for (i = 0; i < n; i++)
     {
@@ -73,7 +73,7 @@ char *greedy(struct City cities[])
     }
     visited[current_city] = true;
 
-    int solution[n], solution_idx = 0;
+    int solution_idx = 0;
     solution[solution_idx] = current_city;
     solution_idx++;
 
@@ -81,7 +81,7 @@ char *greedy(struct City cities[])
     {
         return dist[current_city][to];
     }
-    float min_dist_from_current;
+    float min_dist_from_current, dist_from_current;
     int next_city;
     while (solution_idx < n)
     {
@@ -104,8 +104,16 @@ char *greedy(struct City cities[])
         visited[next_city] = true;
         current_city = next_city;
     }
+}
 
-    return solution;
+void print_solution(int solution[])
+{
+    int i;
+    printf("index\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d\n", solution[i]);
+    }
 }
 
 int main(int argc, char *argv[])
@@ -113,7 +121,10 @@ int main(int argc, char *argv[])
     char *input_file = argv[1];
     struct City cities[2048];
     int i;
+
     n = read_input(input_file, cities);
-    solution = greedy(cities);
+    int solution[n];
+    greedy(cities, solution);
+    print_solution(solution);
     return 0;
 }
