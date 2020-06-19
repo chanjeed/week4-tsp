@@ -211,5 +211,5 @@ if __name__ == '__main__':
             cityList.append(City(index, float(xy[0]), float(xy[1])))
             index += 1
     solution = geneticAlgorithm(
-        population=cityList, popSize=100, eliteSize=20, mutationRateMin=0.01, mutationRateMax=0.05, generations=1000)
+        population=cityList, popSize=100, eliteSize=10, mutationRateMin=0.01, mutationRateMax=0.05, generations=5000)
     print_solution(solution)
