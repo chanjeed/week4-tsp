@@ -7,8 +7,8 @@ int n;
 
 struct City
 {
-    float x;
-    float y;
+    double x;
+    double y;
 };
 
 int random_city()
@@ -26,18 +26,26 @@ int read_input(char filename[], struct City cities[])
     }
     int ret;
     int idx = 0;
-    char bf1, bf2;
-    fscanf(f, "%c,%c", &bf1, &bf2);
-    while ((ret = fscanf(f, "%f,%f", &cities[idx].x, &cities[idx].y)) != EOF)
+    char bf1[4];
+    double bf3, bf4;
+    fscanf(f, "%s\n", &bf1);
+
+    while ((ret = fscanf(f, "%lf,%lf\n", &bf3, &bf4)) != -1)
     {
-        //printf("%f %f\n", cities[idx].x, cities[idx].y);
+        cities[idx].x = bf3;
+        cities[idx].y = bf4;
+        //printf("%d %d\n", idx, ret);
+        //printf("%lf %lf\n", cities[idx].x, cities[idx].y);
         idx++;
     }
+    // n = idx;
+
     fclose(f);
+    printf("idx = %d\n", idx);
     return idx;
 }
 
-float distance(struct City city1, struct City city2)
+double distance(struct City city1, struct City city2)
 {
     return sqrt(pow(city1.x - city2.x, 2) + pow(city1.y - city2.y, 2));
 }
@@ -47,14 +55,18 @@ int print_cities(struct City cities[])
     int i;
     for (i = 0; i < n; i++)
     {
-        printf("%f %f\n", cities[i].x, cities[i].y);
+        printf("%lf %lf\n", cities[i].x, cities[i].y);
     }
 }
 
 void greedy(struct City cities[], int solution[])
 {
-    float dist[n][n];
     int i, j;
+    double **dist;
+    dist = (double **)malloc(n * sizeof(double *));
+
+    for (int i = 0; i < n; i++)
+        dist[i] = (double *)malloc(n * sizeof(double));
 
     for (i = 0; i < n; i++)
     {
@@ -77,15 +89,15 @@ void greedy(struct City cities[], int solution[])
     solution[solution_idx] = current_city;
     solution_idx++;
 
-    float distance_from_current_city(int to)
+    double distance_from_current_city(int to)
     {
         return dist[current_city][to];
     }
-    float min_dist_from_current, dist_from_current;
+    double min_dist_from_current, dist_from_current;
     int next_city;
     while (solution_idx < n)
     {
-        min_dist_from_current = FLT_MAX;
+        min_dist_from_current = DBL_MAX;
         for (i = 0; i < n; i++)
         {
             if ((i != current_city) && (visited[i] == false))
@@ -119,12 +131,15 @@ void print_solution(int solution[])
 int main(int argc, char *argv[])
 {
     char *input_file = argv[1];
-    struct City cities[2048];
+    struct City *cities = (struct City *)malloc(2048 * sizeof(struct City));
     int i;
 
     n = read_input(input_file, cities);
+    printf("finish read_input\n");
+    printf("%d\n", n);
     int solution[n];
     greedy(cities, solution);
+    printf("n = %d\n", n);
     print_solution(solution);
     return 0;
 }
