@@ -2,20 +2,21 @@ Build@Mercari 2020 Week4 - Travelling Salesman PRoblem Challenges.
 
 This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://github.com/hayatoito/google-step-tsp-2016).
 
-1. 手法
+## Solver
 
 ### Greedy_prob (solver_greedy_prob.c)
 
 - 
 
-### GA solver_GA.py)
+### GA (solver_GA.py)
 
 - Genetic algorithm
 - Adaptive mutation rate
 
-2. 結果
+
 ----
 
+## Result
 
 | Solver    | N = 5 | N = 8 | N = 16  | N = 64 | N = 128 | N = 512  | N = 2048 |
 | -------- | -------|--------|------- | ------- | -------|----------|--------- |
