@@ -38,10 +38,8 @@ int read_input(char filename[], struct City cities[])
         //printf("%lf %lf\n", cities[idx].x, cities[idx].y);
         idx++;
     }
-    // n = idx;
 
     fclose(f);
-    printf("idx = %d\n", idx);
     return idx;
 }
 
@@ -135,11 +133,9 @@ int main(int argc, char *argv[])
     int i;
 
     n = read_input(input_file, cities);
-    printf("finish read_input\n");
-    printf("%d\n", n);
+    //printf("finish read_input\n");
     int solution[n];
     greedy(cities, solution);
-    printf("n = %d\n", n);
     print_solution(solution);
     return 0;
 }
