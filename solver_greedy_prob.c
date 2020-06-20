@@ -70,9 +70,10 @@ int pick_next_city(double d[], int c[])
     double offset = 0;
     double sum_prob = 0;
     //printf("prob = %lf\n", prob);
+
     for (i = 0; i < 5; i++)
     {
-        sum_prob += 1 / d[i];
+        sum_prob += 1.0 / d[i];
     }
     for (i = 0; i < 5; i++)
     {
@@ -128,7 +129,7 @@ void improve(struct City cities[], int path[])
             }
         }
     }
-    printf("found %d intersect\n", count);
+    //printf("found %d intersect\n", count);
 }
 
 void make_distance(double **dist, struct City cities[])
@@ -235,7 +236,7 @@ void greedy(double **dist, int solution[], int current_city)
             }
 
             int c[5] = {c1, c2, c3, c4, c5};
-            double d[5] = {first, second, third, fourth, fifth};
+            double d[5] = {first / 2.0, second, third, fourth, fifth};
             next_city = pick_next_city(d, c);
         }
         else
@@ -326,6 +327,6 @@ int main(int argc, char *argv[])
     }
 
     print_solution(best_solution);
-    printf("best sum distance = %lf\n", best_sum_distance);
+    //printf("best sum distance = %lf\n", best_sum_distance);
     return 0;
 }
