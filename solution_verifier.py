@@ -12,7 +12,8 @@ def distance(city1, city2):
 
 
 def verify_solutions():
-    solutions = ('random', 'greedy', 'sa', 'wakanapo', 'greedy_prob', 'GA')
+    solutions = ('random', 'greedy', 'sa', 'wakanapo',
+                 'greedy_opt2', 'greedy_prob', 'GA')
     for challenge_number in range(CHALLENGES):
         print('Challenge {}'.format(challenge_number))
         cities = read_input('input_{}.csv'.format(challenge_number))
