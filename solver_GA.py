@@ -188,12 +188,12 @@ def nextGeneration(currentGen, eliteSize, mutationRateMin, mutationRateMax):
 
 def geneticAlgorithm(population, popSize, eliteSize, mutationRateMin, mutationRateMax, generations):
     pop = initialPopulation(popSize, population)
-    print("Initial distance: " + str(1 / rankRoutes(pop)[0][1]))
+    # print("Initial distance: " + str(1 / rankRoutes(pop)[0][1]))
 
     for i in range(0, generations):
         pop = nextGeneration(pop, eliteSize, mutationRateMin, mutationRateMax)
 
-    print("Final distance: " + str(1 / rankRoutes(pop)[0][1]))
+    # print("Final distance: " + str(1 / rankRoutes(pop)[0][1]))
     bestRouteIndex = rankRoutes(pop)[0][0]
     bestRoute = pop[bestRouteIndex]
     return bestRoute
@@ -211,5 +211,5 @@ if __name__ == '__main__':
             cityList.append(City(index, float(xy[0]), float(xy[1])))
             index += 1
     solution = geneticAlgorithm(
-        population=cityList, popSize=100, eliteSize=10, mutationRateMin=0.01, mutationRateMax=0.05, generations=5000)
+        population=cityList, popSize=100, eliteSize=10, mutationRateMin=0.01, mutationRateMax=0.05, generations=500)
     print_solution(solution)
