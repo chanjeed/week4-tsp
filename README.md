@@ -11,7 +11,7 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 
 ### Greedy_prob (+2opt) (solver_greedy_prob.c)
-- Randomly choose next city from 5 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance from nearest neighbor by 2 to double probability to choose nearest neighbor) 
+- Randomly choose next city from 5 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance to nearest neighbor by 2 to double probability to choose nearest neighbor) 
 - Optimization by adding 2opt method untill there is no intersection
 - Each city be initial city once and choose the best route
 
