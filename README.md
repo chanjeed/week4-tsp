@@ -14,6 +14,7 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 - Randomly choose next city from 5 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance to nearest neighbor by 2 to double probability to choose nearest neighbor) 
 - Optimization by adding 2opt method untill there is no intersection
 - Each city be initial city once and choose the best route
+- I try adding randomness to greedy but the result is worse
 
 ### Genetic algorithm (solver_GA.py)
 
@@ -30,7 +31,7 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 | Solver    | N = 5 | N = 8 | N = 16  | N = 64 | N = 128 | N = 512  | N = 2048 | Speed challenge|
 | -------- | -------|--------|------- | ------- | -------|----------|--------- |----------------| 
 | Greedy (+2opt)  |3418.10| 3832.29 |5228.03 |**8768.33**| **12066.55** | **23649.93**  | **45443.88**  | 349.59s|    
-| Greedy_prob (+2opt2)  |3418.10| 3832.29 |4926.7 |9642.21| 13888.62 | 27526.37  | 55356.14  | |    
+| Greedy_prob (+2opt2)  |3418.10| 3942.55  |4692.42 |9917.54| 13297.55 | 27124.97  | 55045.94  | |    
 | GA (500 generation) |   **3291.62**    | **3778.72**  |  **4494.42** | 14531.46|  29068.87| 250897.11 | 1181979.75 |      |                        
 
 

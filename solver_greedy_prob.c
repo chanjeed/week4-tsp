@@ -84,7 +84,7 @@ int pick_next_city(double d[], int c[])
     }
 }
 
-void swap(int path[], int x, int y)
+void reverse(int path[], int x, int y)
 {
     int temp[y - x + 1], temp_index = 0;
     int k;
@@ -129,9 +129,20 @@ void improve(struct City cities[], int path[])
                                      cities[path[j]].x, cities[path[j]].y, cities[path[j + 1]].x, cities[path[j + 1]].y))
                 {
                     count++;
-                    swap(path, i + 1, j);
+                    reverse(path, i + 1, j);
                     have_improve = 1;
                 }
+            }
+        }
+        // improve between last city and first city
+        for (i = 1; i < n - 2; i++)
+        {
+            if (detect_intersect(cities[path[i]].x, cities[path[i]].y, cities[path[i + 1]].x, cities[path[i + 1]].y,
+                                 cities[path[n - 1]].x, cities[path[n - 1]].y, cities[path[0]].x, cities[path[0]].y))
+            {
+                count++;
+                reverse(path, i + 1, n - 1);
+                have_improve = 1;
             }
         }
     }
