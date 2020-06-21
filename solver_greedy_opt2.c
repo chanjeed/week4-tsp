@@ -122,6 +122,17 @@ void improve(struct POINT point[], int path[])
 				}
 			}
 		}
+		// improve between last city and first city
+		for (i = 1; i < n - 2; i++)
+		{
+			if (detect_intersect(point[path[i]].x, point[path[i]].y, point[path[i + 1]].x, point[path[i + 1]].y,
+								 point[path[n - 1]].x, point[path[n - 1]].y, point[path[0]].x, point[path[0]].y))
+			{
+				count++;
+				reverse(path, i + 1, n - 1);
+				have_improve = 1;
+			}
+		}
 	}
 	//printf("found %d intersect\n", count);
 }
