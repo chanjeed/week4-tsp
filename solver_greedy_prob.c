@@ -116,16 +116,22 @@ void improve(struct City cities[], int path[])
 {
     int i, j;
     int count = 0;
-    for (i = 0; i < n - 1; i++)
+    int have_improve = 1;
+    while (have_improve)
     {
-        for (j = i + 2; j < n - 1; j++)
+        have_improve = 0;
+        for (i = 0; i < n - 1; i++)
         {
-
-            if (detect_intersect(cities[path[i]].x, cities[path[i]].y, cities[path[i + 1]].x, cities[path[i + 1]].y,
-                                 cities[path[j]].x, cities[path[j]].y, cities[path[j + 1]].x, cities[path[j + 1]].y))
+            for (j = i + 2; j < n - 1; j++)
             {
-                count++;
-                swap(path, i + 1, j);
+
+                if (detect_intersect(cities[path[i]].x, cities[path[i]].y, cities[path[i + 1]].x, cities[path[i + 1]].y,
+                                     cities[path[j]].x, cities[path[j]].y, cities[path[j + 1]].x, cities[path[j + 1]].y))
+                {
+                    count++;
+                    swap(path, i + 1, j);
+                    have_improve = 1;
+                }
             }
         }
     }
