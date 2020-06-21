@@ -87,22 +87,17 @@ void find_sum_distance()
 	sum_distance += distance_matrix[answer_path[i - 1]][answer_path[0]];
 }
 
-void swap(int path[], int x, int y)
+void reverse(int path[], int begin, int end)
 {
-	int temp[y - x + 1], temp_index = 0;
+	int tmp;
 	int k;
-	for (k = x; k <= y; k++)
+	while (begin < end)
 	{
-		//	printf("path[k] = %d\n",path[k]);
-		temp[temp_index] = path[k];
-		temp_index++;
-	}
-
-	temp_index--;
-	for (k = x; k <= y; k++)
-	{
-		path[k] = temp[temp_index];
-		temp_index--;
+		tmp = path[begin];
+		path[begin] = path[end];
+		begin++;
+		path[end] = tmp;
+		end--;
 	}
 }
 void improve(struct POINT point[], int path[])
@@ -118,7 +113,7 @@ void improve(struct POINT point[], int path[])
 								 point[path[j]].x, point[path[j]].y, point[path[j + 1]].x, point[path[j + 1]].y))
 			{
 				count++;
-				swap(path, i + 1, j);
+				reverse(path, i + 1, j);
 			}
 		}
 	}
