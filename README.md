@@ -4,14 +4,22 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 ## Solver
 
-### Greedy_prob (solver_greedy_prob.c)
+### Greedy (+2opt) (solver_greedy_opt.c)
+- Nearest Neighbor
+- Optimization by adding 2opt method untill there is no intersection
+- Each city be initial city once and choose the best route
 
-- 
 
-### GA (solver_GA.py)
+### Greedy_prob (+2opt) (solver_greedy_prob.c)
+- Randomly choose next city from 5 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance from nearest neighbor by 2 to double probability to choose nearest neighbor) 
+- Optimization by adding 2opt method untill there is no intersection
+- Each city be initial city once and choose the best route
 
-- Genetic algorithm
-- Adaptive mutation rate
+### Genetic algorithm (solver_GA.py)
+
+- I think Genetic algorithm is interesting so I would like to know the result. I use code from this website [Evolution of a salesman: A complete genetic algorithm tutorial for Python](https://towardsdatascience.com/evolution-of-a-salesman-a-complete-genetic-algorithm-tutorial-for-python-6fe5d2b3ca35)
+- I change constant mutation rate to adaptive mutation rate
+- The result looks good for small number of cities but it is terrible when the number of city increased.
 
 
 ----
