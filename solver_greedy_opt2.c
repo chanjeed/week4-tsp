@@ -104,16 +104,22 @@ void improve(struct POINT point[], int path[])
 {
 	int i, j;
 	int count = 0;
-	for (i = 0; i < n - 1; i++)
+	int have_improve = 1;
+	while (have_improve)
 	{
-		for (j = i + 2; j < n - 1; j++)
+		have_improve = 0;
+		for (i = 0; i < n - 1; i++)
 		{
-
-			if (detect_intersect(point[path[i]].x, point[path[i]].y, point[path[i + 1]].x, point[path[i + 1]].y,
-								 point[path[j]].x, point[path[j]].y, point[path[j + 1]].x, point[path[j + 1]].y))
+			for (j = i + 2; j < n - 1; j++)
 			{
-				count++;
-				reverse(path, i + 1, j);
+
+				if (detect_intersect(point[path[i]].x, point[path[i]].y, point[path[i + 1]].x, point[path[i + 1]].y,
+									 point[path[j]].x, point[path[j]].y, point[path[j + 1]].x, point[path[j + 1]].y))
+				{
+					count++;
+					reverse(path, i + 1, j);
+					have_improve = 1;
+				}
 			}
 		}
 	}
