@@ -20,7 +20,7 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 - I think Genetic algorithm is interesting and I would like to know the result. 
 - I used code from this website [Evolution of a salesman: A complete genetic algorithm tutorial for Python](https://towardsdatascience.com/evolution-of-a-salesman-a-complete-genetic-algorithm-tutorial-for-python-6fe5d2b3ca35)
-- I change constant mutation rate to adaptive mutation rate
+- I change constant mutation rate to adaptive mutation rate according to this paper [Solving TSP Problem with Improved Genetic Algorithm](https://aip.scitation.org/doi/pdf/10.1063/1.5039131)
 - Initial population by random
 - The result looks good for small number of cities but it is terrible when the number of city increased.
 
