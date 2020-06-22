@@ -21,7 +21,12 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 - I think Genetic algorithm is interesting and I would like to know the result. 
 - I used code from this website [Evolution of a salesman: A complete genetic algorithm tutorial for Python](https://towardsdatascience.com/evolution-of-a-salesman-a-complete-genetic-algorithm-tutorial-for-python-6fe5d2b3ca35)
 - I change constant mutation rate to adaptive mutation rate
+- Initial population by random
 - The result looks good for small number of cities but it is terrible when the number of city increased.
+
+### Genetic algorithm from greedy (solver_GA_greedy.py)
+
+- Change initial population from random to greedy (Nearest Neighbor) from each city
 
 
 ----
@@ -30,8 +35,9 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 | Solver    | N = 5 | N = 8 | N = 16  | N = 64 | N = 128 | N = 512  | N = 2048 | Speed challenge|
 | -------- | -------|--------|------- | ------- | -------|----------|--------- |----------------| 
-| Greedy (+2opt)  |3418.10| 3832.29 |5228.03 |**8768.33**| 12066.55 | 23649.93  | **45443.88**  | 349.59s|    
-| Greedy_prob (+2opt2)  |**3291.62**| 3863.43     | **4494.42** | 8912.24  | **11817.99** | **23514.8** | 47997.69   | |    
+| Greedy (NN+2opt)  |3418.10| 3832.29 |5228.03 |**8768.33**| 12066.55 | **23649.93**  | **45443.88**  | 349.59s|    
+| Greedy_prob (NN2+2opt)  |**3291.62**| 3832.29    | **4494.42** | 9066.32  | **12023.92** | 23700.27  | 47997.69   | |    
+| GA initial by greedy (500 generation) |   **3291.62**    | **3778.72**  |  4821.46| 9088.15|  12252.17| 176173.46  | 1106591.58  |      |   
 | GA (500 generation) |   **3291.62**    | **3778.72**  |  **4494.42** | 14531.46|  29068.87| 250897.11 | 1181979.75 |      |                        
 
 

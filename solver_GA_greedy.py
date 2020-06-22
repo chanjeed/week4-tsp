@@ -61,11 +61,36 @@ def createRoute(cityList):
     return route
 
 
+def createRoute_greedy(cityList, current_city):
+    N = len(cityList)
+
+    dist = [[0] * N for i in range(N)]
+    for i in range(N):
+        for j in range(N):
+            dist[i][j] = dist[j][i] = cityList[i].distance(cityList[j])
+
+    route = [cityList[current_city]]
+    unvisited_cities = set(range(0, N))
+    unvisited_cities.remove(current_city)
+
+    def distance_from_current_city(to):
+        return dist[current_city][to]
+
+    while unvisited_cities:
+        next_city = min(unvisited_cities, key=distance_from_current_city)
+        unvisited_cities.remove(next_city)
+        route.append(cityList[next_city])
+        current_city = next_city
+
+    return route
+
+
 def initialPopulation(popSize, cityList):
     population = []
 
     for i in range(0, popSize):
-        population.append(createRoute(cityList))
+        population.append(createRoute_greedy(cityList, i % n))
+
     return population
 
 
@@ -166,7 +191,9 @@ def mutatePopulation(population, mutationRateMin, mutationRateMax):
     F_max = popRanked[0][1]
     for ind in range(0, len(population)):
         F = Fitness(population[ind]).routeFitness()
-        if F < F_avg:
+        if F_max == F_avg:
+            mutationRate = 0
+        elif F < F_avg:
             mutationRate = mutationRateMax
         else:
             mutationRate = mutationRateMax * \
@@ -210,6 +237,7 @@ if __name__ == '__main__':
             xy = line.split(',')
             cityList.append(City(index, float(xy[0]), float(xy[1])))
             index += 1
+    n = index
     solution = geneticAlgorithm(
         population=cityList, popSize=100, eliteSize=10, mutationRateMin=0.01,
         mutationRateMax=0.05, generations=int(sys.argv[2]))
