@@ -256,7 +256,7 @@ void greedy(double **dist, int solution[], int current_city)
             }
 
             int c[5] = {c1, c2, c3, c4, c5};
-            double d[5] = {first / 2.0, second, third, fourth, fifth};
+            double d[5] = {first, second, third, fourth, fifth};
             next_city = pick_next_city(d, c);
         }
         else
