@@ -194,12 +194,12 @@ void greedy(double **dist, int solution[], int current_city)
     while (solution_idx < n)
     {
 
-        if (solution_idx + 5 < n)
+        if (solution_idx + 2 < n)
         {
 
-            fifth = fourth = third = first = second = DBL_MAX;
+            first = second = DBL_MAX;
 
-            c1 = c2 = c3 = c4 = c5 = -1;
+            c1 = c2 = -1;
             for (i = 0; i < n; i++)
             {
 
@@ -209,54 +209,23 @@ void greedy(double **dist, int solution[], int current_city)
 
                     if (dist_from_current < first)
                     {
-                        fifth = fourth;
-                        fourth = third;
-                        third = second;
+
                         second = first;
                         first = dist_from_current;
-                        c5 = c4;
-                        c4 = c3;
-                        c3 = c2;
                         c2 = c1;
                         c1 = i;
                     }
                     else if (dist_from_current < second)
                     {
-                        fifth = fourth;
-                        fourth = third;
-                        third = second;
+
                         second = dist_from_current;
-                        c5 = c4;
-                        c4 = c3;
-                        c3 = c2;
                         c2 = i;
-                    }
-                    else if (dist_from_current < third)
-                    {
-                        fifth = fourth;
-                        fourth = third;
-                        third = dist_from_current;
-                        c5 = c4;
-                        c4 = c3;
-                        c3 = i;
-                    }
-                    else if (dist_from_current < fourth)
-                    {
-                        fifth = fourth;
-                        fourth = dist_from_current;
-                        c5 = c4;
-                        c4 = i;
-                    }
-                    else if (dist_from_current < fifth)
-                    {
-                        fifth = dist_from_current;
-                        c5 = i;
                     }
                 }
             }
 
-            int c[5] = {c1, c2, c3, c4, c5};
-            double d[5] = {first, second, third, fourth, fifth};
+            int c[2] = {c1, c2};
+            double d[2] = {first / 2.0, second};
             next_city = pick_next_city(d, c);
         }
         else
