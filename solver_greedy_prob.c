@@ -71,16 +71,19 @@ int pick_next_city(double d[], int c[])
     double sum_prob = 0;
     //printf("prob = %lf\n", prob);
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < 3; i++)
     {
         sum_prob += 1.0 / d[i];
     }
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < 3; i++)
     {
         offset += (1 / d[i]) / sum_prob;
         //printf("offset = %lf\n", offset);
         if (prob < offset)
+        {
+            //printf("i = %d\n", i);
             return c[i];
+        }
     }
 }
 
