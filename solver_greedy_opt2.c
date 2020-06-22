@@ -108,13 +108,13 @@ void improve(struct POINT point[], int path[])
 	while (have_improve)
 	{
 		have_improve = 0;
-		for (i = 0; i < n - 1; i++)
+		for (i = 0; i < n - 2; i++)
 		{
-			for (j = i + 2; j < n - 1; j++)
+			for (j = i + 2; j < n; j++)
 			{
 
 				if (detect_intersect(point[path[i]].x, point[path[i]].y, point[path[i + 1]].x, point[path[i + 1]].y,
-									 point[path[j]].x, point[path[j]].y, point[path[j + 1]].x, point[path[j + 1]].y))
+									 point[path[j]].x, point[path[j]].y, point[path[(j + 1) % n]].x, point[path[(j + 1) % n]].y))
 				{
 					count++;
 					reverse(path, i + 1, j);
@@ -122,18 +122,7 @@ void improve(struct POINT point[], int path[])
 				}
 			}
 		}
-		// improve between last city and first city
-		for (i = 1; i < n - 2; i++)
-		{
-			if (detect_intersect(point[path[i]].x, point[path[i]].y, point[path[i + 1]].x, point[path[i + 1]].y,
-								 point[path[n - 1]].x, point[path[n - 1]].y, point[path[0]].x, point[path[0]].y))
-			{
-				count++;
-				reverse(path, i + 1, n - 1);
-				have_improve = 1;
-			}
 		}
-	}
 	//printf("found %d intersect\n", count);
 }
 void copy_path()
