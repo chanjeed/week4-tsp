@@ -14,29 +14,36 @@
     :host {
       @apply(--layout-horizontal);
     }
+
     [nav] {
       width: 220px;
       @apply(--layout-vertical);
     }
+
     travelling-salesman-problem {
       width: 100%;
       margin-top: 16px;
     }
+
     #control {
       padding: 8px;
       @apply(--layout-vertical);
     }
+
     #result {
       margin-top: 8px;
     }
+
     #challenges {
       @apply(--layout-flex);
       @apply(--layout-vertical);
     }
+
     #solvers {
       @apply(--layout-flex);
       @apply(--layout-vertical);
     }
+
     paper-radio-button {
       display: block;
     }
@@ -44,7 +51,8 @@
   <template>
     <div nav>
       <div>
-        <img src="https://www-mercari-jp.akamaized.net/assets/img/common/jp/logo_horizontal.png?304547132" height="100"></img>
+        <img src="https://www-mercari-jp.akamaized.net/assets/img/common/jp/logo_horizontal.png?304547132"
+          height="100"></img>
         <h4>Travelling Salesman Problem Challenges</h4>
       </div>
       <div id="control">
@@ -67,6 +75,13 @@
         <h4>Solutions</h4>
         <paper-radio-group id="solvers" selected="yours">
           <paper-radio-button name="yours">yours</paper-radio-button>
+          <paper-radio-button name="greedy_opt2_insert">greedy + 2opt + insert</paper-radio-button>
+          <paper-radio-button name="greedy_opt2">greedy + opt-2 </paper-radio-button>
+          <paper-radio-button name="greedy_prob_insert">greedy_prob + 2opt + insert </paper-radio-button>
+          <paper-radio-button name="greedy_prob">greedy_prob + 2opt </paper-radio-button>
+          <paper-radio-button name="GA_greedy">GA initial by greedy (500 generation)</paper-radio-button>
+          <paper-radio-button name="GA_10000">GA (10000 generation)</paper-radio-button>
+          <paper-radio-button name="GA">GA (500 generation)</paper-radio-button>
           <paper-radio-button name="wakanapo">wakanapo</paper-radio-button>
           <paper-radio-button name="random">sample-random</paper-radio-button>
           <paper-radio-button name="greedy">sample-greedy</paper-radio-button>
@@ -76,7 +91,9 @@
       <div>
         <h4>Links</h4>
         <div><a href="https://github.com/mercari-build/week4-tsp/blob/gh-pages/README.md">README</a></div>
-        <div><a href="https://docs.google.com/spreadsheets/d/1t4ScULZ7aZpDJL8i9AVFQfqL7sErjT5i3cmC1G5ecR8/edit?usp=sharing">Scoreboard</a></div>
+        <div><a
+            href="https://docs.google.com/spreadsheets/d/1t4ScULZ7aZpDJL8i9AVFQfqL7sErjT5i3cmC1G5ecR8/edit?usp=sharing">Scoreboard</a>
+        </div>
       </div>
     </div>
     <travelling-salesman-problem id="tsp" pathlength="{{result}}"></travelling-salesman-problem>
@@ -85,24 +102,24 @@
 <script>
   Polymer({
     is: "travelling-salesman-problem-visualizer",
-    ready: function() {
+    ready: function () {
       var self = this;
       this.webComponentsReady = false;
-      this.$.challenges.addEventListener('paper-radio-group-changed', function(e) {
+      this.$.challenges.addEventListener('paper-radio-group-changed', function (e) {
         self.draw();
       });
-      this.$.solvers.addEventListener('paper-radio-group-changed', function() {
+      this.$.solvers.addEventListener('paper-radio-group-changed', function () {
         self.draw();
       });
-      window.addEventListener('WebComponentsReady', function(e) {
+      window.addEventListener('WebComponentsReady', function (e) {
         self.webComponentsReady = true;
         self.draw();
       });
     },
-    run: function() {
+    run: function () {
       this.$.tsp.draw();
     },
-    draw: function() {
+    draw: function () {
       this.$.tsp.inputfile = '../input_' + this.$.challenges.selected + '.csv';
       this.$.tsp.solutionfile = '../solution_' + this.$.solvers.selected + '_' + this.$.challenges.selected + '.csv';
       if (this.webComponentsReady) {
