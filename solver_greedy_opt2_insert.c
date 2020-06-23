@@ -150,7 +150,7 @@ void insert_city_left(int path[], int from, int to)
 	path[to + 1] = tmp;
 }
 
-void insert(struct POINT point[], int path[])
+void insert(int path[])
 {
 	int i, j, k;
 	for (i = 1; i < n; i++)
@@ -222,9 +222,6 @@ void tsp(struct POINT point[], int start_city)
 		answer_path[index_path] = next_city;
 		index_path += 1;
 	}
-
-	opt2(point, answer_path);
-	insert(point, answer_path);
 }
 
 void output()
@@ -272,6 +269,8 @@ void input(char file_name[])
 	for (i = 0; i < n; i++)
 	{
 		tsp(point, i);
+		opt2(point, answer_path);
+		insert(answer_path);
 		find_sum_distance();
 		if (sum_distance < min_sum_distance)
 		{
