@@ -4,11 +4,13 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 ## Solver
 
-### Greedy (+2opt) (solver_greedy_opt.c)
+### Greedy (NN+2opt) (solver_greedy_opt2.c)
 - Nearest Neighbor
 - Optimization by adding 2opt method untill there is no intersection
 - Each city be initial city once and choose the best route
 
+### Greedy (NN+2opt+insert) (solver_greedy_opt2_insert.c)
+- From Greedy (NN+2opt) more optimization by inserting one city into other position if the distance decrease 
 
 ### Greedy_prob (+2opt) (solver_greedy_prob.c)
 - Randomly choose next city from 2 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance to nearest neighbor by 2 to double probability to choose nearest neighbor) 
@@ -35,8 +37,9 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 | Solver    | N = 5 | N = 8 | N = 16  | N = 64 | N = 128 | N = 512  | N = 2048 | Speed challenge|
 | -------- | -------|--------|------- | ------- | -------|----------|--------- |----------------| 
-| Greedy (NN+2opt)  |3418.10| 3832.29 |5228.03 |**8768.33**| 12066.55 | 23701.76  | **45360.80**  | 349.59s|    
-| Greedy_prob (NN2+2opt)  |**3291.62**| 3832.29    | **4494.42** | 9066.32  | **12023.92** | **23700.27**  | 47997.69   | |    
+| Greedy (NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |**8604.04**| **11629.90** | **22445.92**  | **45360.80**  | 1027.75s|    
+| Greedy (NN+2opt)  |3418.10| 3832.29 |5228.03 |8768.33| 12066.55 | 23701.76  | **45360.80**  | **349.59s**|    
+| Greedy_prob (NN2+2opt)  |**3291.62**| 3832.29    | **4494.42** | 9066.32  | 12023.92 | 23700.27  | 47997.69   | |  
 | GA initial by greedy (500 generation) |   **3291.62**    | **3778.72**  |  4821.46| 9088.15|  12252.17| 176173.46  | 1106591.58  |      |   
 | GA (500 generation) |   **3291.62**    | **3778.72**  |  **4494.42** | 14531.46|  29068.87| 250897.11 | 1181979.75 |      |                        
 
