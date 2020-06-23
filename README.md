@@ -18,6 +18,9 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 - Each city be initial city once and choose the best route
 - I tried adding randomness to greedy by chossing next city from 2 to 5 Nearest Neighbor and found that this one is the best
 
+### Greedy (NN+2opt+insert) (solver_greedy_opt2_insert.c)
+- From Greedy_prob (NN+2opt) more optimization by inserting one city into other position if the distance decrease 
+
 ### Genetic algorithm (solver_GA.py)
 
 - I think Genetic algorithm is interesting and I would like to know the result. 
@@ -37,10 +40,10 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 
 | Solver    | N = 5 | N = 8 | N = 16  | N = 64 | N = 128 | N = 512  | N = 2048 | Speed challenge|
 | -------- | -------|--------|------- | ------- | -------|----------|--------- |----------------| 
-| Greedy (NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |8604.04| 11629.90 | 22445.92  | **43149.49**  | 1027.75s|    
 | Greedy (NN+2opt)  |3418.10| 3832.29 |5228.03 |8768.33| 12066.55 | 23701.76  | 45360.80  | **349.59s**|    
-| Greedy_prob_insert (2NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |**8532.60**| **11008.36** | **21519.87**  | 44038.64  | 1335.00s|    
+| Greedy (NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |8604.04| 11629.90 | 22445.92  | **43149.49**  | 1027.75s|    
 | Greedy_prob (2NN+2opt)  |**3291.62**| 3832.29    | **4494.42** | 9066.32  | 12023.92 | 23700.27  | 47997.69   | |  
+| Greedy_prob (2NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |**8532.60**| **11008.36** | **21519.87**  | 44038.64  | 1335.00s|    
 | GA initial by greedy (500 generation) |   **3291.62**    | **3778.72**  |  4821.46| 9088.15|  12252.17| 176173.46  | 1106591.58  |      |   
 | GA (500 generation) |   **3291.62**    | **3778.72**  |  **4494.42** | 14531.46|  29068.87| 250897.11 | 1181979.75 |      |                        
 
