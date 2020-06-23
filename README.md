@@ -1,5 +1,7 @@
 Build@Mercari 2020 Week4 - Travelling Salesman PRoblem Challenges.
 
+[scoreboard]: https://docs.google.com/spreadsheets/d/1t4ScULZ7aZpDJL8i9AVFQfqL7sErjT5i3cmC1G5ecR8/edit?usp=sharing
+
 This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://github.com/hayatoito/google-step-tsp-2016).
 
 ## Solver
