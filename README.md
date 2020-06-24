@@ -14,13 +14,13 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 ### Greedy (NN+2opt+insert) (solver_greedy_opt2_insert.c)
 - From Greedy (NN+2opt) more optimization by inserting one city into other position if the distance decrease untill there is no improving
 
-### Greedy_prob (+2opt) (solver_greedy_prob.c)
+### Greedy_prob (2NN+2opt) (solver_greedy_prob.c)
 - Randomly choose next city from 2 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance to nearest neighbor by 2 to double probability to choose nearest neighbor) 
 - Optimization by adding 2opt method untill there is no intersection
 - Each city be initial city once and choose the best route
 - I tried adding randomness to greedy by chossing next city from 2 to 5 Nearest Neighbor and found that this one is the best
 
-### Greedy (NN+2opt+insert) (solver_greedy_opt2_insert.c)
+### Greedy_prob (2NN+2opt+insert) (solver_greedy_opt2_insert.c)
 - From Greedy_prob (NN+2opt) more optimization by inserting one city into other position if the distance decrease untill there is no improving
 
 ### Genetic algorithm (solver_GA.py)
