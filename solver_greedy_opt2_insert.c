@@ -153,40 +153,47 @@ void insert_city_left(int path[], int from, int to)
 void insert(int path[])
 {
 	int i, j, k;
-	for (i = 1; i < n; i++)
+	int have_insert = 1;
+	while (have_insert)
 	{
-		for (j = 1; j < n; j++)
+		have_insert = 0;
+		for (i = 1; i < n; i++)
 		{
-			if (i == j || i == j + 1)
+			for (j = 1; j < n; j++)
 			{
-				continue;
-			}
-			if (distance_matrix[path[i - 1]][path[i]] + distance_matrix[path[i]][path[(i + 1) % n]] + distance_matrix[path[j]][path[(j + 1) % n]] > distance_matrix[path[i - 1]][path[(i + 1) % n]] + distance_matrix[path[j]][path[i]] + distance_matrix[path[i]][path[(j + 1) % n]])
-			{
-				//insert i city between j,j+1 city
-
-				// printf("i = %d, j = %d\n", i, j);
-				// printf("before\n");
-				// for (k = 0; k < n; k++)
-				// {
-				// 	printf("%d\n", path[k]);
-				// }
-				if (i < j)
+				if (i == j || i == j + 1)
 				{
-					insert_city_right(path, i, j);
+					continue;
 				}
-
-				else
+				if (distance_matrix[path[i - 1]][path[i]] + distance_matrix[path[i]][path[(i + 1) % n]] + distance_matrix[path[j]][path[(j + 1) % n]] > distance_matrix[path[i - 1]][path[(i + 1) % n]] + distance_matrix[path[j]][path[i]] + distance_matrix[path[i]][path[(j + 1) % n]])
 				{
-					insert_city_left(path, i, j);
-				}
+					//insert i city between j,j+1 city
 
-				// printf("after\n");
-				// for (k = 0; k < n; k++)
-				// {
-				// 	printf("%d\n", path[k]);
-				// }
-				// exit(1);
+					// printf("i = %d, j = %d\n", i, j);
+					// printf("before\n");
+					// for (k = 0; k < n; k++)
+					// {
+					// 	printf("%d\n", path[k]);
+					// }
+
+					have_insert = 1;
+					if (i < j)
+					{
+						insert_city_right(path, i, j);
+					}
+
+					else
+					{
+						insert_city_left(path, i, j);
+					}
+
+					// printf("after\n");
+					// for (k = 0; k < n; k++)
+					// {
+					// 	printf("%d\n", path[k]);
+					// }
+					// exit(1);
+				}
 			}
 		}
 	}
