@@ -278,7 +278,6 @@ void input(char file_name[])
 		tsp(point, i);
 		opt2(point, answer_path);
 		insert(answer_path);
-		opt2(point, answer_path);
 		find_sum_distance();
 		if (sum_distance < min_sum_distance)
 		{
