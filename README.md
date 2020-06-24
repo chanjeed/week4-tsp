@@ -1,6 +1,6 @@
 Build@Mercari 2020 Week4 - Travelling Salesman PRoblem Challenges.
 
-**scoreboard** : https://docs.google.com/spreadsheets/d/1t4ScULZ7aZpDJL8i9AVFQfqL7sErjT5i3cmC1G5ecR8/edit?usp=sharing
+scoreboard : https://docs.google.com/spreadsheets/d/1t4ScULZ7aZpDJL8i9AVFQfqL7sErjT5i3cmC1G5ecR8/edit?usp=sharing
 
 This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://github.com/hayatoito/google-step-tsp-2016).
 
@@ -14,13 +14,13 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 ### Greedy (NN+2opt+insert) (solver_greedy_opt2_insert.c)
 - From Greedy (NN+2opt) more optimization by inserting one city into other position if the distance decrease untill there is no improving
 
-### Greedy_prob (+2opt) (solver_greedy_prob.c)
+### Greedy_prob (2NN+2opt) (solver_greedy_prob.c)
 - Randomly choose next city from 2 Nearest Neighbor according to ratio of inverse of distance from current city ( but divide distance to nearest neighbor by 2 to double probability to choose nearest neighbor) 
 - Optimization by adding 2opt method untill there is no intersection
 - Each city be initial city once and choose the best route
 - I tried adding randomness to greedy by chossing next city from 2 to 5 Nearest Neighbor and found that this one is the best
 
-### Greedy (NN+2opt+insert) (solver_greedy_opt2_insert.c)
+### Greedy_prob (2NN+2opt+insert) (solver_greedy_opt2_insert.c)
 - From Greedy_prob (NN+2opt) more optimization by inserting one city into other position if the distance decrease untill there is no improving
 
 ### Genetic algorithm (solver_GA.py)
@@ -45,7 +45,7 @@ This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://
 | Greedy (NN+2opt)  |3418.10| 3832.29 |5228.03 |8768.33| 12066.55 | 23701.76  | 45360.80  | **349.59s**|    
 | Greedy (NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |8604.04| 11313.59 | 22057.00  | 42492.93  | |    
 | Greedy_prob (2NN+2opt)  |**3291.62**| 3832.29    | **4494.42** | 9066.32  | 12023.92 | 23700.27  | 47997.69   | |  
-| Greedy_prob (2NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |**8206.17**| **10883.59** | **21057.33**  | **42468.19**   | |    
+| Greedy_prob (2NN+2opt+insert)  |**3291.62** | **3778.72** |**4494.42** |**8206.17**| **10883.59** | **21057.33**  | **42301.89**   | 6821.14s|    
 | GA initial by greedy (500 generation) |   **3291.62**    | **3778.72**  |  4821.46| 9088.15|  12252.17| 176173.46  | 1106591.58  |      |   
 | GA (500 generation) |   **3291.62**    | **3778.72**  |  **4494.42** | 14531.46|  29068.87| 250897.11 | 1181979.75 |      |                        
 
